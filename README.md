@@ -1,2 +1,3 @@
 # shapez2-ros-calc
-Supply calculations for ROS making in game Shapez2
+https://no-one-0.github.io/shapez2-ros-calc/
+Calculations for making ROS shapes in game Shapez2

@@ -75,26 +75,26 @@ function compute()
 <form>
 <table>
 <thead>
-<tr><th><h4>Supplied belts per layer</h4></th><th><h4>Supplied launchers of R, G and B fluids per layer</h4></th></tr>
+<tr><th><h4>Supplied belts per layer (max: 4)</h4></th><th><h4>Supplied launchers of R, G and B fluids per layer</h4></th></tr>
 </thead>
 <tbody>
 <tr>
 
 <td>
 <input type="text" id="s0" placeholder="floating point > 0" pattern="\d+(\.\d+)?" required="1" value="2.5" oninput="compute()" />
-<label for="s0">Circle (31.5%)</label> max: 4
+<label for="s0">Circle (31.5%)</label>
 <br />
 <input type="text" id="s1" placeholder="floating point > 0" pattern="\d+(\.\d+)?" required="1" value="2.5" oninput="compute()" />
-<label for="s1">Rectangle (31.5%)</label> max: 4
+<label for="s1">Rectangle (31.5%)</label>
 <br />
 <input type="text" id="s2" placeholder="floating point > 0" pattern="\d+(\.\d+)?" required="1" value="2.5" oninput="compute()" />
-<label for="s2">Star (27%)</label> max: 4
+<label for="s2">Star (27%)</label>
 <br />
 <input type="text" id="s3" placeholder="floating point > 0" pattern="\d+(\.\d+)?" required="1" value="1.2" oninput="compute()" />
-<label for="s3">Wiamond (10%)</label> max: 4
+<label for="s3">Wiamond (10%)</label>
 </td>
 
-<td style="vertical-align:top;text-align:right">
+<td style="vertical-align:top;text-align:left">
 <label for="c0">For ROS#0 machines</label>
 <input type="text" id="c0" placeholder="floating point > 0" pattern="\d+(\.\d+)?" required="1" value="1.5" oninput="compute()" /> max: 4
 <br />

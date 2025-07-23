@@ -107,11 +107,11 @@ function compute()
 </table>
 </form>
 <p>(The probability of a quadrant being Wiamond is 10%.)</p>
-<p>(The ROS#1 input includes fluid for painting and crystalizing.)</p>
+<p>(The ROS#1 input includes fluid for painting and crystal generation.)</p>
 
 <table>
 <caption>
-<h4>Average times for making the amount of 4 full belts</h4>
+<h4>Productivity measured by time</h4>
 </caption>
 <thead>
 <tr><th></th><th>1 Layer</th><th>2 Layers</th><th>3 Layers</th><th>4 Layers</th><th>5 Layers</th></tr>
@@ -119,20 +119,18 @@ function compute()
 <tbody>
 <tr><th>ROS#0</th><td id="r0t1"></td><td id="r0t2"></td><td id="r0t3"></td><td id="r0t4"></td><td id="r0t5"></td></tr>
 <tr><th>ROS#1</th><td id="r1t1"></td><td id="r1t2"></td><td id="r1t3"></td><td id="r1t4"></td><td id="r1t5"></td></tr>
-<tr><th>ROS#1 smart</th><td id="r2t1"></td><td id="r2t2"></td><td id="r2t3"></td><td id="r2t4"></td><td id="r2t5"></td></tr>
+<tr><th>ROS#1 Smart</th><td id="r2t1"></td><td id="r2t2"></td><td id="r2t3"></td><td id="r2t4"></td><td id="r2t5"></td></tr>
 </tbody>
 </table>
 
-<p>(Smart is for smart crystalization: if there are consecutive crystaliztions with the same color then only the last one is performed, pins must be used to prevent dropping in the skipped layers.)</p>
-<p>Calculates averages for the ROS0 and the ROS1 shapes without pin pushed layers.</p>
-<p>Computes the average times required for making the same amount as 4 full belts output would give.</p>
-<p>The result is 1 if the given supply is enough to produce 4 full belts of any ROS shape.</p>
-<p>ROS shapes with pins are not taken into account, they would only improve the results because of the destroyed shape parts in excess layers.</p>
+<p>("Smart" is for smart crystallization: when consecutive crystallizations use the same color, only the final one is executed. Pins must be placed to prevent drops in the skipped layers.)</p>
+<p>Pinned shapes are excluded from the computation, as their presence would only lower the resulting values due to omitted shape parts in excess layers.</p>
+<p>The calculation is based on the assumption that, during a supply shortage, output is proportional to the least supplied resource, measured as a percentage of the required amount. (The reality is probably not so ideal)<>
 
 <p>Assumptions:
 <ul>
 <li>supply is shared between layers</li>
-<li>every shape part is used up</li>
+<li>every consumed input shape is fully utilized (e.g., no half destroyers are used)</li>
 <li>only full shapes are being painted</li>
 <li>no other bottleneck</li>
 </ul>

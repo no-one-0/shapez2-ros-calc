@@ -112,7 +112,7 @@ function compute()
 <p>(Assuming the machine uses conventional color mixing: extra primary colors are not mixed, 2x secondary and 3x white can be mixed.)</p>
 
 <table>
-<h3>Productivity measured by time</h3>
+<h3>Expected productivity measured by time</h3>
 <thead>
 <tr><th></th><th>1 Layer</th><th>2 Layers</th><th>3 Layers</th><th>4 Layers</th><th>5 Layers</th></tr>
 </thead>
@@ -125,7 +125,7 @@ function compute()
 
 <p>("Smart" is for smart crystallization: when consecutive crystallizations use the same color, only the final one is executed. Pins must be placed to prevent drops in the skipped layers.)</p>
 <p>Pinned shapes are excluded from the computation, as their presence would only lower the resulting values due to omitted shape parts in excess layers.</p>
-<p>The calculation is based on the assumption that, during a supply shortage, output is proportional to the least supplied resource, measured as a percentage of the required amount. (The reality is probably not so ideal)</p>
+<p>The calculation is based on the assumption that output is constrained by the resource with the lowest supply-to-requirement ratio. (The reality is probably not so ideal)</p>
 
 <p><b>Other assumptions</b>
 <ul>

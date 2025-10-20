@@ -1,0 +1,222 @@
+<!doctype html>
+<style>
+  #myChart {
+    display: block;
+    width: 100vw;
+    height: 500px; /* or use 100vh for full height */
+  }
+</style>
+
+<canvas id="myChart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: Array.from({ length: 25 }, (_, i) => i),
+      datasets: [{
+        label: 'ROS#0 4 layers',
+		spanGaps: true,
+        data: [
+ null,
+ null,
+ null,
+ null,
+ 0.0008980532235438709,
+ 0.002643741933431921,
+ 0.010238193744156817,
+ 0.02133547013655609,
+ 0.057561503611349575,
+ 0.09015765381353398,
+ 0.1424400242729854,
+ 0.1445455433757026,
+ 0.16587634382775363,
+ 0.1361513027683882,
+ 0.1269303889292023,
+ 0.06981431835196003,
+ 0.031407462011435947,
+ ],
+        borderWidth: 2
+      },{
+        label: 'ROS#0 5 layers',
+		spanGaps: true,
+        data: [
+ null,
+ null,
+ null,
+ null,
+ null,
+ null,
+ 0.0004684465917324687,
+ 0.0022502343053513035,
+ 0.008307254389207139,
+ 0.01752370799872748,
+ 0.03758516560714347,
+ 0.060900472385755015,
+ 0.1013165455720866,
+ 0.1265875721599392,
+ 0.15187257003377785,
+ 0.14003819585600247,
+ 0.13225746266960361,
+ 0.09898649660157546,
+ 0.07393545815376673,
+ 0.035275035319402424,
+ 0.01269538235593288],
+        borderWidth: 2
+      },{
+        label: 'ROS#1 4 layers',
+		spanGaps: true,
+        data: [
+ null,
+ null,
+ null,
+ null,
+ 0.005309750591181417,
+ 0.010946483396486144,
+ 0.048513421598222584,
+ 0.1326177700028666,
+ 0.17531957725534225,
+ 0.20189283640046918,
+ 0.23198131775623537,
+ 0.15453922903502582,
+ 0.038879613964171285,
+ ],
+        borderWidth: 2
+      },{
+        label: 'ROS#1 5 layers',
+		spanGaps: true,
+        data: [
+ null,
+ null,
+ null,
+ null,
+ null,
+ null,
+ 0.007000396303942534,
+ 0.02183670864275178,
+ 0.04670639168929797,
+ 0.10757769775323602,
+ 0.1710233817635149,
+ 0.18904800319857987,
+ 0.19289539362302255,
+ 0.16496001916091851,
+ 0.08237496113849688,
+ 0.016577046726230175,
+ ],
+        borderWidth: 2
+      },{
+        label: 'ROS#0 hexa',
+		spanGaps: true,
+        data: [
+ null,
+ null,
+ null,
+ null,
+ 0.0003387462927329206,
+ 0.0001491859671015883,
+ 0.0029272630556180373,
+ 0.0009061539571578061,
+ 0.017681047676181273,
+ 0.0029019790796299687,
+ 0.05520334739892487,
+ 0.006229357074923658,
+ 0.1174499325539542,
+ 0.007947759366436193,
+ 0.1779145108362877,
+ 0.006379921651615197,
+ 0.19557341790241198,
+ 0.002758843534283817,
+ 0.17748636436014478,
+ null,
+ 0.12693038892920233,
+ null,
+ 0.06981431835196004,
+ null,
+ 0.031407462011435947],
+        borderWidth: 2
+      },{
+        label: 'ROS#1 hexa',
+		spanGaps: true,
+        data: [
+ null,
+ null,
+ null,
+ null,
+ 0.00478081165175434,
+ 0.0003741514748939367,
+ 0.04888603872245728,
+ 0.0024611585733091707,
+ 0.16921455602355023,
+ 0.005578116096045067,
+ 0.28790709460371133,
+ 0.005195508363159123,
+ 0.2794592777423519,
+ 0.0017096304134961336,
+ 0.15554745570707446,
+ 5.763331011159514e-06,
+ 0.0388804372971724,],
+        borderWidth: 2
+      }]
+    },
+    options: {
+
+plugins: {
+  datalabels: {
+    display: function(context) {
+      return context.dataset.data[context.dataIndex] != 0.0;
+    }
+  }
+},
+
+  plugins: {
+    tooltip: {
+	  mode: 'index',
+	  intersect: false,
+      callbacks: {
+        label: function(context) {
+          const label = context.dataset.label || '';
+          const value = context.raw;
+          return value == 0.0 ? '' : `${label}: ${value.toFixed(6)}`;
+        }
+      }
+    }
+  },
+
+
+	responsive: true,
+	maintainAspectRatio: false,
+      scales: {
+	x: {
+      type: 'linear',
+      position: 'bottom',
+      title: {
+        display: true,
+        text: 'number of shape parts',
+        font: {
+          size: 16
+        }
+      },
+      min: 4,
+      max: 24,
+      ticks: {
+        stepSize: 1, // Interval between ticks
+      }
+    },
+         y: {
+      title: {
+        display: true,
+        text: 'probability',
+        font: {
+          size: 16
+        }
+      },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>

@@ -1,0 +1,112 @@
+<!doctype html>
+<style>
+  #myChart {
+    display: block;
+    width: 100vw;
+    height: 600px; /* or use 100vh for full height */
+  }
+</style>
+
+<canvas id="myChart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: Array.from({ length: 5 }, (_, i) => i + 1),
+      datasets: [{
+        label: 'ROS#1 4 layers',
+		spanGaps: true,
+        data: [
+ 0.019997084548105164,
+ 0.1634107092073745,
+ 0.4298545969150745,
+ 0.38673760932944623,
+ ],
+        borderWidth: 2
+      },{
+        label: 'ROS#1 5 layers',
+		spanGaps: true,
+        data: [
+ 0.005427780091628433,
+ 0.059993023849023094,
+ 0.2397613906299277,
+ 0.41939156729946586,
+ 0.27542623812994593,
+ ],
+        borderWidth: 2
+      },{
+        label: 'ROS#1 hexa',
+		spanGaps: true,
+        data: [
+ 0.01999708454810149,
+ 0.162946708613341,
+ 0.43031859750909907,
+ 0.38673760932944495,
+
+ ],
+        borderWidth: 2
+      }]
+    },
+    options: {
+
+plugins: {
+  datalabels: {
+    display: function(context) {
+      return context.dataset.data[context.dataIndex] != 0.0;
+    }
+  }
+},
+
+  plugins: {
+    tooltip: {
+	  mode: 'index',
+	  intersect: false,
+      callbacks: {
+        label: function(context) {
+          const label = context.dataset.label || '';
+          const value = context.raw;
+          return value == 0.0 ? '' : `${label}: ${value.toFixed(8)}`;
+        }
+      }
+    }
+  },
+
+
+	responsive: true,
+	maintainAspectRatio: false,
+      scales: {
+	x: {
+      type: 'linear',
+      position: 'bottom',
+      title: {
+        display: true,
+        text: 'number of crystallizations (smart)',
+        font: {
+          size: 16
+        }
+      },
+      min: 1,
+      max: 5,
+      ticks: {
+        stepSize: 1, // Interval between ticks
+      }
+    },
+         y: {
+      title: {
+        display: true,
+        text: 'probability',
+        font: {
+          size: 16
+        }
+      },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>

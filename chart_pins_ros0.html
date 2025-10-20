@@ -1,0 +1,136 @@
+<!doctype html>
+<style>
+  #myChart {
+    display: block;
+    width: 100vw;
+    height: 600px; /* or use 100vh for full height */
+  }
+</style>
+
+<canvas id="myChart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: Array.from({ length: 16 }, (_, i) => i),
+      datasets: [{
+        label: 'ROS#0 4 layers',
+		spanGaps: true,
+        data: [
+ 0.6141250000000004,
+ null,
+ 0.08730619674385226,
+ 0.09217744939032863,
+ 0.17885818059923603,
+ 0.006793844923071471,
+ 0.008430055416563284,
+ 0.005689692671052357,
+ 0.006596541634875115,
+ 2.3038621020888304e-05,
+ ],
+        borderWidth: 2
+      },{
+        label: 'ROS#0 5 layers',
+		spanGaps: true,
+        data: [
+ 0.522006250000001,
+ null,
+ 0.10017380352156258,
+ 0.10596792320844554,
+ 0.20387158271456657,
+ 0.013578730461595802,
+ 0.02115915721167932,
+ 0.015848440342062415,
+ 0.016694913505878296,
+ 0.0005130943300545606,
+ 0.00018452539116975926,
+ 1.5793129881404562e-06,
+ ],
+        borderWidth: 2
+      },{
+        label: 'ROS#0 hexa',
+		spanGaps: true,
+        data: [
+ 0.6141250000000026,
+ null,
+ 0.0868122443588356,
+ 0.0008310041567108069,
+ 0.09214254231356078,
+ 0.0026211043427614923,
+ 0.17681312928156678,
+ 0.0022442696228546243,
+ 0.009993226474185912,
+ 0.0008710079817132513,
+ 0.006809106140114429,
+ 0.0005215525712694706,
+ 0.006141891649455033,
+ 6.187320998043383e-05,
+ 9.249003889231973e-06,
+ 2.7988931017565015e-06,
+ ],
+        borderWidth: 2
+      }]
+    },
+    options: {
+
+plugins: {
+  datalabels: {
+    display: function(context) {
+      return context.dataset.data[context.dataIndex] != 0.0;
+    }
+  }
+},
+
+  plugins: {
+    tooltip: {
+	  mode: 'index',
+	  intersect: false,
+      callbacks: {
+        label: function(context) {
+          const label = context.dataset.label || '';
+          const value = context.raw;
+          return value == 0.0 ? '' : `${label}: ${value.toFixed(8)}`;
+        }
+      }
+    }
+  },
+
+
+	responsive: true,
+	maintainAspectRatio: false,
+      scales: {
+	x: {
+      type: 'linear',
+      position: 'bottom',
+      title: {
+        display: true,
+        text: 'number of pins',
+        font: {
+          size: 16
+        }
+      },
+      min: 0,
+      max: 15,
+      ticks: {
+        stepSize: 1, // Interval between ticks
+      }
+    },
+         y: {
+      title: {
+        display: true,
+        text: 'probability',
+        font: {
+          size: 16
+        }
+      },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
